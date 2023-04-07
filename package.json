@@ -1,0 +1,29 @@
+{
+  "name": "rest-swagger",
+  "version": "1.0.0",
+  "description": "Rest + Swagger task",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.codeit.pro/yaroslav.horban/rest-swagger.git"
+  },
+  "keywords": [
+    "REST",
+    "Swagger",
+    "API",
+    "db"
+  ],
+  "author": "Yaroslav Horban",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.10.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
