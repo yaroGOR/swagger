@@ -10,11 +10,11 @@ const Middleware = require("./middleware/jwtMiddleware");
 
 const userController = require("./controllers/usersController");
 const postsController = require("./controllers/postsController");
+const logger = require("./winston");
 
 dotenv.config();
 const UsersController = new userController();
 const PostsController = new postsController();
-const logger = require("./winston");
 
 const requestListener = async function (req, res) {
   try {
@@ -41,7 +41,6 @@ const requestListener = async function (req, res) {
       //update post {id}
       Middleware.verifyTokenMiddleware(req, res);
 
-      console.log(2);
 
       PostsController.updatePost(req, res);
     }
@@ -50,13 +49,11 @@ const requestListener = async function (req, res) {
 
       //get post by {id}
       PostsController.getPostById(req, res);
-      console.log(3);
     }
     if (req.url.match(/\/posts\/[0-9]/) && req.method === "DELETE") {
       Middleware.verifyTokenMiddleware(req, res);
 
       //delete post {id}
-      console.log(4);
       PostsController.deletePost(req, res);
     }
 
@@ -64,7 +61,6 @@ const requestListener = async function (req, res) {
       Middleware.verifyTokenMiddleware(req, res);
 
       //get post by filename {filename}
-      console.log(5);
       PostsController.getPostByFilename(req, res);
     }
   } catch (error) {
