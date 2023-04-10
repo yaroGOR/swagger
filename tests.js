@@ -23,10 +23,10 @@ try {
       console.log("POST /register (register new user) SUCCESS ");
     });
 } catch (error) {
-          console.log("POST /register (register new user) SUCCESS ");
+          console.log("POST /register (register new user) FAIL ", error);
     
 }
-
+try {
   await request(host)
     .post("/login")
     .send({
@@ -39,7 +39,10 @@ try {
       console.log("POST /login (login user) SUCCESS");
       console.log("JWT token = ", token);
     });
-
+} catch (error) {
+    console.log("POST /login (login user) FAIL", error);
+}
+try {
   await request(host)
     .post("/posts")
     .set("Authorization", "Bearer " + token)
@@ -53,7 +56,11 @@ try {
       post_id = JSON.parse(res.text).id;
       console.log("POST /posts (create new post) SUCCESS");
     });
+}catch (error) {
+          console.log("POST /login (login user) FAIL", error);
 
+}
+try {
   await request(host)
     .put("/posts/" + String(post_id))
     .set("Authorization", "Bearer " + token)
@@ -66,7 +73,11 @@ try {
     .then((res) => {
       console.log(`PUT /posts/${post_id} (update new post) SUCCESS`);
     });
+}catch (error) {
+          console.log("POST /login (login user) FAIL", error);
 
+}
+try {
   await request(host)
     .get("/posts/" + String(post_id))
     .set("Authorization", "Bearer " + token)
@@ -76,7 +87,11 @@ try {
       post_filename = JSON.parse(res.text).title;
       console.log(`GET /posts${post_id} (get  post by id) SUCCESS`);
     });
+}catch (error) {
+          console.log("POST /login (login user) FAIL", error);
 
+}
+try {
   await request(host)
     .get("/posts/" + String(post_filename))
     .set("Authorization", "Bearer " + token)
@@ -88,6 +103,11 @@ try {
       );
     });
 
+}catch (error) {
+          console.log("POST /login (login user) FAIL", error);
+
+}
+try {
   await request(host)
     .delete("/posts/" + String(post_id))
     .set("Authorization", "Bearer " + token)
@@ -96,6 +116,10 @@ try {
     .then((res) => {
       console.log(`DELETE /posts/${post_id} (delete  post by id) SUCCESS`);
     });
+} catch (error) {
+    console.log("POST /login (login user) FAIL", error);
+
+}
 };
 }
 
