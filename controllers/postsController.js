@@ -12,9 +12,10 @@ class PostsController {
       const post = await model.createPost(title, author, content);
       writeToFile(post, title);
       console.log(JSON.stringify(post));
+      const post_id = post.post_id
 
       res.writeHead(200);
-      res.end(JSON.stringify({ message: "Created" }));
+      res.end(JSON.stringify({ message: "Created", id:post_id }));
     } catch (error) {
       logger.error(error);
       res.writeHead(500);
@@ -57,7 +58,7 @@ class PostsController {
       const filename = req.url.split("/")[2];
       const post = await model.getPostByFileName(filename);
       res.writeHead(200);
-      res.end(JSON.stringify(post));
+      res.end(JSON.stringify(post.rows[0]));
     } catch (error) {
       logger.error(error);
       res.writeHead(500);
