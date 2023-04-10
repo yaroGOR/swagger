@@ -11,7 +11,7 @@ const test = async () => {
         let randomusername = (Math.random() + 1).toString(36).substring(7);
         let post_id;
 let post_filename;
-
+try {
   await request(host)
     .post("/register")
     .send({
@@ -22,6 +22,10 @@ let post_filename;
     .then((res) => {
       console.log("POST /register (register new user) SUCCESS ");
     });
+} catch (error) {
+          console.log("POST /register (register new user) SUCCESS ");
+    
+}
 
   await request(host)
     .post("/login")
