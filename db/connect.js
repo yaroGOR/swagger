@@ -1,19 +1,19 @@
-const { Client } = require('pg')
-const client = new Client({
-  host:'localhost',
-  port:5432,
-  database:'postgres',
-  user:'postgres',
-  password:'1234'
-}
+const { Client } = require("pg");
+const logger = require("../winston");
 
-)
+const client = new Client({
+  host: process.env.PG_HOST,
+  port: process.env.PG_PORT,
+  database: process.env.PG_DATABASE,
+  user: process.env.PG_USER,
+  password: process.env.PG_PASSWORD,
+});
 client.connect((err) => {
   if (err) {
-    console.error('connection error', err.stack)
+    logger.error(error.stack);
   } else {
-    console.log('connected to db')
+    console.log("Connected to db");
   }
-})
+});
 
-module.exports = client
+module.exports = client;
