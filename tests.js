@@ -1,15 +1,15 @@
 const request = require("supertest");
 
 let randomusername = (Math.random() + 1).toString(36).substring(7);
+let password = 'password'
 request("http://localhost:5011")
-  .set("Content-Type", "application/json")
-  .set('Accept', 'application/json')
   .post("/register")
   .send({
     username: randomusername,
-    password: "password",
+    password: password,
   })
+  .expect(200)
+  .expect(body=>{console.log(body)})
   .end(function (err, res) {
     if (err) throw err;
-    console.log(res);
   });

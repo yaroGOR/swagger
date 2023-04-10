@@ -17,6 +17,9 @@ class PostsController {
       res.end(JSON.stringify({ message: "Created" }));
     } catch (error) {
       logger.error(error);
+      res.writeHead(500);
+      res.end(JSON.stringify({error:"An error occured"}))
+
     }
   }
 
@@ -29,6 +32,8 @@ class PostsController {
       res.end(JSON.stringify(post));
     } catch (error) {
       logger.error(error);
+      res.writeHead(500);
+      res.end(JSON.stringify({error:"An error occured"}))
     }
   }
 
@@ -42,6 +47,8 @@ class PostsController {
       res.end(JSON.stringify({ message: "Updated" }));
     } catch (error) {
       logger.error(error);
+      res.writeHead(500);
+      res.end(JSON.stringify({error:"An error occured"}))
     }
   }
 
@@ -53,6 +60,8 @@ class PostsController {
       res.end(JSON.stringify(post));
     } catch (error) {
       logger.error(error);
+      res.writeHead(500);
+      res.end(JSON.stringify({error:"An error occured"}))
     }
   }
 
@@ -64,6 +73,8 @@ class PostsController {
       res.end(JSON.stringify({ message: "Deleted" }));
     } catch (error) {
       logger.error(error);
+      res.writeHead(500);
+      res.end(JSON.stringify({error:"An error occured"}))
     }
   }
 }
