@@ -30,6 +30,7 @@ const cryptPassword =async  (passwordFromUser)=> {
 }
 const checkPassword = async  (passwordFromUser, savedPassword) => {
     try {
+        console.log(passwordFromUser, savedPassword)
 
     const result = await bcrypt.compare(passwordFromUser, savedPassword)
     console.log(result)

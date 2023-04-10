@@ -7,10 +7,10 @@ const model = new UserModel();
 class UserController {
   constructor() {}
 
-  registerUser(req, res) {
-    const password = cryptPassword(req.body.password);
+ async registerUser(req, res) {
+    const password =await cryptPassword(req.body.password);
     try {
-      model.saveUser(req.body.username, password);
+     await model.saveUser(req.body.username, password);
     } catch (error) {
       logger.error(error);
 
@@ -21,10 +21,11 @@ class UserController {
     res.end(JSON.stringify({ message: "Registered" }));
   }
 
-  loginUser(req, res) {
+ async loginUser(req, res) {
     try {
-      const user = model.getUser(req.body.username, req.body.password);
-
+      const user = await model.getUser(req.body.username, req.body.password);
+        console.log(req.body)
+        console.log('user password', user)
       const passwordCompare = checkPassword(req.body.password, user.password);
 
       if (passwordCompare) {

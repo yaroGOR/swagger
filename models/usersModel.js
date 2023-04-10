@@ -21,7 +21,9 @@ class UserModel {
         "SELECT * FROM users WHERE username = $1",
         [username]
       );
+      console.log(result.rows)
       const user = result.rows[0];
+      console.log(user)
       return user;
     } catch (error) {
       throw error;
